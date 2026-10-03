@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>In Loving Memory of Grandfather</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Cormorant Garamond & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            linen: '#FDFBF7',
+            cream: '#FAF4EB',
+            charcoal: '#2C2A29',
+            muted: '#6E6A66',
+            gold: {
+              300: '#E6CA85',
+              400: '#D4AF37',
+              500: '#B89758',
+              600: '#9E7E3B',
+            }
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #FDFBF7;
+      color: #2C2A29;
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Soft candle flame animations */
+    @keyframes flicker {
+      0%, 100% { transform: scale(1) rotate(-1deg); opacity: 0.95; }
+      20% { transform: scale(1.05) rotate(1deg); opacity: 1; }
+      40% { transform: scale(0.98) rotate(-2deg); opacity: 0.9; }
+      60% { transform: scale(1.08) rotate(1.5deg); opacity: 1; }
+      80% { transform: scale(1.02) rotate(-0.5deg); opacity: 0.95; }
+    }
+
+    @keyframes haloGlow {
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50% { opacity: 0.85; transform: scale(1.15); }
+    }
+
+    .flame-active {
+      animation: flicker 1.8s infinite ease-in-out;
+      transform-origin: bottom center;
+    }
+
+    .flame-glow {
+      animation: haloGlow 2.5s infinite ease-in-out;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #FDFBF7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #D4AF37;
+      border-radius: 4px;
+    }
+
+    /* Tab active indicator */
+    .tab-active {
+      border-bottom: 2px solid #B89758;
+      color: #B89758;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-gold-300 selection:text-charcoal">
+
+  <div class="w-full max-w-3xl mx-auto px-4 py-6 md:py-10">
+
+    <!-- Header Banner / Flower Motif -->
+    <div class="text-center mb-4">
+      <div class="inline-flex items-center justify-center space-x-3 text-gold-500 mb-2">
+        <span class="h-[1px] w-12 bg-gold-300"></span>
+        <i class="fa-solid fa-dove text-lg"></i>
+        <span class="h-[1px] w-12 bg-gold-300"></span>
+      </div>
+      <p class="text-xs uppercase tracking-[0.25em] text-muted font-medium">In Everlasting Memory Of</p>
+    </div>
+
+    <!-- Main Card Profile Container -->
+    <div class="bg-white rounded-2xl shadow-xl shadow-stone-200/60 border border-stone-100 overflow-hidden">
+      
+      <!-- Profile Header -->
+      <div class="pt-8 pb-6 px-6 text-center bg-gradient-to-b from-cream/60 to-white relative">
+        
+        <!-- Grandfather's Photo Frame -->
+        <div class="relative w-36 h-36 md:w-44 md:h-44 mx-auto mb-5">
+          <div class="absolute inset-0 rounded-full border-2 border-gold-400 p-1">
+            <div class="w-full h-full rounded-full overflow-hidden shadow-inner bg-stone-100">
+              <!-- Replace with grandfather's photo (e.g. photo.jpg) -->
+              <img id="profile-img" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=400" 
+                   alt="Grandfather's Portrait" 
+                   class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700 ease-in-out">
+            </div>
+          </div>
+          <div class="absolute -bottom-2 right-2 bg-gold-500 text-white w-8 h-8 rounded-full flex items-center justify-center shadow-md">
+            <i class="fa-solid fa-heart text-xs"></i>
+          </div>
+        </div>
+
+        <!-- Name & Dates -->
+        <h1 class="font-serif text-3xl md:text-4xl font-bold tracking-tight text-charcoal mb-1">
+          Arthur Edward Mitchell
+        </h1>
+        <p class="text-gold-600 font-serif italic text-lg md:text-xl font-medium mb-3">
+          October 14, 1938 – March 22, 2024
+        </p>
+        <p class="text-sm text-muted max-w-md mx-auto italic font-serif">
+          "A devoted husband, cherished father, wise grandfather, and a guiding light to all who knew him."
+        </p>
+
+        <!-- Candle Lighting Widget -->
+        <div class="mt-6 pt-6 border-t border-stone-100 flex flex-col items-center">
+          
+          <!-- Virtual Candle SVG -->
+          <div class="relative w-16 h-24 flex flex-col items-center justify-end mb-2 cursor-pointer" onclick="toggleCandle()">
+            <!-- Halo Glow -->
+            <div id="candle-halo" class="absolute top-1 w-12 h-12 bg-amber-300/40 rounded-full blur-md flame-glow hidden"></div>
+            
+            <!-- Flame -->
+            <div id="candle-flame" class="relative z-10 w-4 h-7 mb-1 hidden">
+              <svg viewBox="0 0 24 36" class="w-full h-full flame-active">
+                <path d="M12 0C12 0 24 14 24 22C24 28.6274 18.6274 34 12 34C5.37258 34 0 28.6274 0 22C0 14 12 0 12 0Z" fill="#F59E0B" />
+                <path d="M12 8C12 8 18 17 18 22C18 25.3137 15.3137 28 12 28C8.68629 28 6 25.3137 6 22C6 17 12 8 12 8Z" fill="#FBBF24" />
+                <path d="M12 16C12 16 15 20 15 23C15 24.6569 13.6569 26 12 26C10.3431 26 9 24.6569 9 23C9 20 12 16 12 16Z" fill="#FEF3C7" />
+              </svg>
+            </div>
+
+            <!-- Wick -->
+            <div class="w-1 h-3 bg-stone-700 rounded-t-sm"></div>
+
+            <!-- Wax Candle Base -->
+            <div class="w-10 h-14 bg-gradient-to-r from-stone-200 via-stone-100 to-stone-300 rounded-t-md shadow-sm border border-stone-200/80 flex justify-center pt-1">
+              <div class="w-8 h-1 bg-stone-300/60 rounded-full"></div>
+            </div>
+          </div>
+
+          <!-- Candle Button & Counter -->
+          <button id="candle-btn" onclick="toggleCandle()" 
+                  class="px-5 py-2.5 bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-500 text-white text-xs font-semibold uppercase tracking-wider rounded-full shadow-md hover:shadow-lg transition-all duration-300 flex items-center space-x-2">
+            <i class="fa-solid fa-fire text-amber-200"></i>
+            <span id="candle-btn-text">Light a Candle in Memory</span>
+          </button>
+          
+          <p class="text-xs text-muted mt-2">
+            <span id="candle-count" class="font-semibold text-charcoal">0</span> candles have been lit by visitors
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Navigation Tabs -->
+      <div class="border-b border-stone-200 bg-stone-50/50 px-4 flex justify-around overflow-x-auto">
+        <button onclick="switchTab('bio')" id="tab-bio" class="tab-btn py-3 px-3 text-xs md:text-sm font-medium text-muted hover:text-charcoal transition whitespace-nowrap tab-active">
+          <i class="fa-solid fa-book-open mr-1.5 text-xs"></i> Life & Story
+        </button>
+        <button onclick="switchTab('gallery')" id="tab-gallery" class="tab-btn py-3 px-3 text-xs md:text-sm font-medium text-muted hover:text-charcoal transition whitespace-nowrap">
+          <i class="fa-solid fa-images mr-1.5 text-xs"></i> Gallery
+        </button>
+        <button onclick="switchTab('tributes')" id="tab-tributes" class="tab-btn py-3 px-3 text-xs md:text-sm font-medium text-muted hover:text-charcoal transition whitespace-nowrap">
+          <i class="fa-solid fa-comments mr-1.5 text-xs"></i> Tributes
+        </button>
+        <button onclick="switchTab('music')" id="tab-music" class="tab-btn py-3 px-3 text-xs md:text-sm font-medium text-muted hover:text-charcoal transition whitespace-nowrap">
+          <i class="fa-solid fa-music mr-1.5 text-xs"></i> Favorite Songs
+        </button>
+      </div>
+
+      <!-- TAB CONTENT AREA -->
+      <div class="p-6 md:p-8">
+
+        <!-- TAB 1: BIOGRAPHY & TIMELINE -->
+        <div id="content-bio" class="tab-content block space-y-8">
+          
+          <!-- Narrative Bio -->
+          <div class="prose prose-stone max-w-none">
+            <h3 class="font-serif text-2xl font-semibold text-charcoal mb-3 border-b border-stone-100 pb-2">
+              A Life Well Lived
+            </h3>
+            <p class="text-stone-700 leading-relaxed text-sm md:text-base mb-4">
+              Arthur Edward Mitchell was born in Chicago, Illinois in 1938. Known for his steadfast character, warm sense of humor, and gentle wisdom, Arthur dedicated over 40 years as an engineer, craftsman, and community volunteer.
+            </p>
+            <p class="text-stone-700 leading-relaxed text-sm md:text-base">
+              Beyond his professional achievements, his greatest joy was his family. He spent countless weekends teaching his children and grandchildren woodworking, gardening, and the art of patience.
+            </p>
+          </div>
+
+          <!-- Milestones Timeline -->
+          <div>
+            <h3 class="font-serif text-2xl font-semibold text-charcoal mb-5 border-b border-stone-100 pb-2">
+              Life Milestones
+            </h3>
+            
+            <div class="relative border-l-2 border-gold-300 ml-3 space-y-6">
+              
+              <!-- Timeline Item 1 -->
+              <div class="relative pl-6">
+                <div class="absolute -left-[9px] top-1 w-4 h-4 bg-gold-500 rounded-full border-2 border-white"></div>
+                <span class="text-xs font-semibold text-gold-600 uppercase tracking-wider">1938</span>
+                <h4 class="font-serif text-lg font-semibold text-charcoal">Born in Chicago, Illinois</h4>
+                <p class="text-xs md:text-sm text-stone-600 mt-1">Welcomed as the eldest son of Edward and Eleanor Mitchell.</p>
+              </div>
+
+              <!-- Timeline Item 2 -->
+              <div class="relative pl-6">
+                <div class="absolute -left-[9px] top-1 w-4 h-4 bg-gold-500 rounded-full border-2 border-white"></div>
+                <span class="text-xs font-semibold text-gold-600 uppercase tracking-wider">1962</span>
+                <h4 class="font-serif text-lg font-semibold text-charcoal">Married the Love of His Life</h4>
+                <p class="text-xs md:text-sm text-stone-600 mt-1">Married Margaret Davis, beginning a beautiful 62-year journey together.</p>
+              </div>
+
+              <!-- Timeline Item 3 -->
+              <div class="relative pl-6">
+                <div class="absolute -left-[9px] top-1 w-4 h-4 bg-gold-500 rounded-full border-2 border-white"></div>
+                <span class="text-xs font-semibold text-gold-600 uppercase tracking-wider">1975</span>
+                <h4 class="font-serif text-lg font-semibold text-charcoal">Founded Mitchell Woodworking Shop</h4>
+                <p class="text-xs md:text-sm text-stone-600 mt-1">Turned his passion for carpentry into a beloved family business.</p>
+              </div>
+
+              <!-- Timeline Item 4 -->
+              <div class="relative pl-6">
+                <div class="absolute -left-[9px] top-1 w-4 h-4 bg-gold-500 rounded-full border-2 border-white"></div>
+                <span class="text-xs font-semibold text-gold-600 uppercase tracking-wider">1998</span>
+                <h4 class="font-serif text-lg font-semibold text-charcoal">Became a Grandfather</h4>
+                <p class="text-xs md:text-sm text-stone-600 mt-1">Welcomed his first grandchild, stepping into his favorite role in life.</p>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <!-- TAB 2: PHOTO GALLERY -->
+        <div id="content-gallery" class="tab-content hidden">
+          <h3 class="font-serif text-2xl font-semibold text-charcoal mb-4 border-b border-stone-100 pb-2">
+            Cherished Memories
+          </h3>
+          <p class="text-xs md:text-sm text-stone-600 mb-6">Click any photo to view in full resolution.</p>
+
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+            
+            <!-- Photo 1 -->
+            <div class="group relative aspect-square rounded-xl overflow-hidden bg-stone-100 cursor-pointer shadow-sm hover:shadow-md transition"
+                 onclick="openLightbox('https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=1000', 'Arthur on his 80th Birthday')">
+              <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=400" 
+                   alt="Birthday Celebration" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+              <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition flex items-end p-2 text-white text-xs">
+                <span>Arthur's 80th Birthday</span>
+              </div>
+            </div>
+
+            <!-- Photo 2 -->
+            <div class="group relative aspect-square rounded-xl overflow-hidden bg-stone-100 cursor-pointer shadow-sm hover:shadow-md transition"
+                 onclick="openLightbox('https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&q=80&w=1000', 'Family Gathering at the Lakehouse')">
+              <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&q=80&w=400" 
+                   alt="Family Gathering" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+              <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition flex items-end p-2 text-white text-xs">
+                <span>Family Lakehouse Trip</span>
+              </div>
+            </div>
+
+            <!-- Photo 3 -->
+            <div class="group relative aspect-square rounded-xl overflow-hidden bg-stone-100 cursor-pointer shadow-sm hover:shadow-md transition"
+                 onclick="openLightbox('https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&q=80&w=1000', 'In his element: Woodworking workshop')">
+              <img src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&q=80&w=400" 
+                   alt="Woodworking" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+              <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition flex items-end p-2 text-white text-xs">
+                <span>In the Workshop</span>
+              </div>
+            </div>
+
+            <!-- Photo 4 -->
+            <div class="group relative aspect-square rounded-xl overflow-hidden bg-stone-100 cursor-pointer shadow-sm hover:shadow-md transition"
+                 onclick="openLightbox('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&q=80&w=1000', 'Favorite walking trail in the autumn')">
+              <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&q=80&w=400" 
+                   alt="Autumn Walk" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+              <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition flex items-end p-2 text-white text-xs">
+                <span>His Favorite Walk</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- TAB 3: VISITOR TRIBUTES & GUESTBOOK -->
+        <div id="content-tributes" class="tab-content hidden">
+          <h3 class="font-serif text-2xl font-semibold text-charcoal mb-2 border-b border-stone-100 pb-2">
+            Leave a Condolence or Memory
+          </h3>
+          <p class="text-xs md:text-sm text-stone-600 mb-6">
+            Share a favorite memory or message for the Mitchell family.
+          </p>
+
+          <!-- Form -->
+          <form id="tribute-form" onsubmit="submitTribute(event)" class="bg-cream/50 p-4 md:p-5 rounded-xl border border-stone-200/80 mb-8 space-y-4">
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-charcoal mb-1">Your Name</label>
+              <input type="text" id="author-name" required placeholder="e.g. Sarah Mitchell" 
+                     class="w-full px-3 py-2 text-sm bg-white border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-400">
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-charcoal mb-1">Relationship / Connection</label>
+              <input type="text" id="author-relation" placeholder="e.g. Granddaughter, Neighbor, Friend" 
+                     class="w-full px-3 py-2 text-sm bg-white border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-400">
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-charcoal mb-1">Your Tribute or Memory</label>
+              <textarea id="author-message" rows="3" required placeholder="Write your words of love or special memories..." 
+                        class="w-full px-3 py-2 text-sm bg-white border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-400"></textarea>
+            </div>
+
+            <button type="submit" 
+                    class="w-full py-2.5 bg-charcoal text-white hover:bg-stone-800 text-xs font-semibold uppercase tracking-wider rounded-lg transition shadow">
+              Submit Memory
+            </button>
+          </form>
+
+          <!-- List of Tributes -->
+          <div id="tributes-list" class="space-y-4">
+            <!-- Dynamic items rendered via JS -->
+          </div>
+        </div>
+
+        <!-- TAB 4: FAVORITE SONGS -->
+        <div id="content-music" class="tab-content hidden">
+          <h3 class="font-serif text-2xl font-semibold text-charcoal mb-2 border-b border-stone-100 pb-2">
+            Songs He Loved
+          </h3>
+          <p class="text-xs md:text-sm text-stone-600 mb-6">
+            Play a soothing ambient melody or listen to his favorite timeless classics.
+          </p>
+
+          <!-- Synthesized Soothing Peace Audio Player -->
+          <div class="bg-stone-900 text-white p-5 rounded-2xl shadow-md mb-6 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-4">
+              <div class="w-12 h-12 bg-gold-500 rounded-full flex items-center justify-center text-white text-xl shadow-inner">
+                <i class="fa-solid fa-compact-disc animate-spin" style="animation-duration: 8s;"></i>
+              </div>
+              <div>
+                <h4 class="font-serif text-lg font-semibold text-amber-100">Peaceful Remembrance Chimes</h4>
+                <p class="text-xs text-stone-400">Soft instrumental meditation for quiet reflection</p>
+              </div>
+            </div>
+
+            <button id="audio-toggle-btn" onclick="toggleAudio()" 
+                    class="px-5 py-2.5 bg-gold-500 hover:bg-gold-400 text-stone-900 font-semibold text-xs uppercase tracking-wider rounded-full transition flex items-center space-x-2">
+              <i id="audio-btn-icon" class="fa-solid fa-play"></i>
+              <span id="audio-btn-label">Play Ambient Music</span>
+            </button>
+          </div>
+
+          <!-- Song Recommendations List -->
+          <div class="space-y-3">
+            <div class="p-3 bg-stone-50 rounded-lg border border-stone-200 flex justify-between items-center">
+              <div>
+                <p class="text-sm font-semibold text-charcoal">What a Wonderful World</p>
+                <p class="text-xs text-muted">Louis Armstrong</p>
+              </div>
+              <span class="text-xs text-gold-600 italic">Favorite Evening Song</span>
+            </div>
+
+            <div class="p-3 bg-stone-50 rounded-lg border border-stone-200 flex justify-between items-center">
+              <div>
+                <p class="text-sm font-semibold text-charcoal">Unforgettable</p>
+                <p class="text-xs text-muted">Nat King Cole</p>
+              </div>
+              <span class="text-xs text-gold-600 italic">Wedding Anniversary Song</span>
+            </div>
+
+            <div class="p-3 bg-stone-50 rounded-lg border border-stone-200 flex justify-between items-center">
+              <div>
+                <p class="text-sm font-semibold text-charcoal">Amazing Grace</p>
+                <p class="text-xs text-muted">Traditional Hymn</p>
+              </div>
+              <span class="text-xs text-gold-600 italic">Sunday Morning Tradition</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Footer -->
+      <div class="bg-stone-100/70 border-t border-stone-200 py-4 px-6 text-center">
+        <p class="text-xs text-muted font-serif">
+          Forever in our thoughts and hearts &bull; Shared with love by the Mitchell Family
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- LIGHTBOX MODAL -->
+  <div id="lightbox" class="fixed inset-0 z-50 bg-black/90 hidden flex-col items-center justify-center p-4">
+    <button onclick="closeLightbox()" class="absolute top-4 right-4 text-white text-2xl hover:text-gold-300 transition">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <img id="lightbox-img" src="" alt="Full view" class="max-w-full max-h-[80vh] rounded-lg shadow-2xl object-contain mb-3">
+    <p id="lightbox-caption" class="text-stone-300 text-sm font-serif italic text-center"></p>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 bg-charcoal text-white text-xs px-4 py-3 rounded-full shadow-lg opacity-0 pointer-events-none transition duration-300 flex items-center space-x-2 z-50">
+    <i class="fa-solid fa-circle-check text-gold-400"></i>
+    <span id="toast-msg">Action completed.</span>
+  </div>
+
+  <script>
+    // --- STATE MANAGEMENT ---
+    let candleLit = false;
+    let candleCount = 142; // Base candles lit
+    let audioContext = null;
+    let isAudioPlaying = false;
+    let audioOscillator = null;
+
+    // --- INITIALIZATION ---
+    window.addEventListener('DOMContentLoaded', () => {
+      // Load stored candle state
+      const storedCandles = localStorage.getItem('memorial_candles');
+      if (storedCandles) {
+        candleCount = parseInt(storedCandles, 10);
+      }
+      document.getElementById('candle-count').innerText = candleCount;
+
+      const userLit = localStorage.getItem('user_lit_candle');
+      if (userLit === 'true') {
+        setCandleLitState(true, false);
+      }
+
+      // Load sample tributes
+      renderTributes();
+    });
+
+    // --- CANDLE LIGHTING LOGIC ---
+    function toggleCandle() {
+      candleLit = !candleLit;
+      
+      if (candleLit) {
+        candleCount++;
+        localStorage.setItem('user_lit_candle', 'true');
+        showToast("You lit a candle in loving memory.");
+      } else {
+        candleCount = Math.max(0, candleCount - 1);
+        localStorage.setItem('user_lit_candle', 'false');
+        showToast("Candle extinguished.");
+      }
+
+      localStorage.setItem('memorial_candles', candleCount);
+      document.getElementById('candle-count').innerText = candleCount;
+
+      setCandleLitState(candleLit, true);
+    }
+
+    function setCandleLitState(lit, animate) {
+      candleLit = lit;
+      const flame = document.getElementById('candle-flame');
+      const halo = document.getElementById('candle-halo');
+      const btnText = document.getElementById('candle-btn-text');
+
+      if (lit) {
+        flame.classList.remove('hidden');
+        halo.classList.remove('hidden');
+        btnText.innerText = "Your Candle is Lit";
+      } else {
+        flame.classList.add('hidden');
+        halo.classList.add('hidden');
+        btnText.innerText = "Light a Candle in Memory";
+      }
+    }
+
+    // --- TAB SWITCHING ---
+    function switchTab(tabName) {
+      // Hide all tabs
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('tab-active'));
+
+      // Show selected tab
+      document.getElementById(`content-${tabName}`).classList.remove('hidden');
+      document.getElementById(`tab-${tabName}`).classList.add('tab-active');
+    }
+
+    // --- LIGHTBOX ---
+    function openLightbox(src, caption) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox-caption').innerText = caption;
+      document.getElementById('lightbox').classList.remove('hidden');
+      document.getElementById('lightbox').classList.add('flex');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.add('hidden');
+      document.getElementById('lightbox').classList.remove('flex');
+    }
+
+    // --- GUESTBOOK / TRIBUTES ---
+    const defaultTributes = [
+      {
+        name: "Margaret Mitchell",
+        relation: "Wife",
+        message: "To my sweet Arthur, thank you for 62 years of unwavering love, laughter, and warmth. Until we meet again.",
+        date: "March 24, 2024"
+      },
+      {
+        name: "David Mitchell",
+        relation: "Son",
+        message: "Dad taught me everything I know about integrity, hard work, and caring for family. Miss you every single day.",
+        date: "March 26, 2024"
+      }
+    ];
+
+    function getTributes() {
+      const stored = localStorage.getItem('memorial_tributes_list');
+      return stored ? JSON.parse(stored) : defaultTributes;
+    }
+
+    function renderTributes() {
+      const tributes = getTributes();
+      const container = document.getElementById('tributes-list');
+      container.innerHTML = '';
+
+      tributes.forEach(t => {
+        const item = document.createElement('div');
+        item.className = "p-4 bg-white border border-stone-200/80 rounded-xl shadow-sm";
+        item.innerHTML = `
+          <div class="flex justify-between items-start mb-1">
+            <h5 class="font-serif font-semibold text-charcoal text-base">${escapeHtml(t.name)}</h5>
+            <span class="text-[10px] text-muted uppercase tracking-wider">${t.date}</span>
+          </div>
+          <p class="text-xs text-gold-600 italic mb-2">${escapeHtml(t.relation || 'Family Friend')}</p>
+          <p class="text-xs md:text-sm text-stone-700 leading-relaxed font-serif">"${escapeHtml(t.message)}"</p>
+        `;
+        container.appendChild(item);
+      });
+    }
+
+    function submitTribute(e) {
+      e.preventDefault();
+      const name = document.getElementById('author-name').value.trim();
+      const relation = document.getElementById('author-relation').value.trim();
+      const message = document.getElementById('author-message').value.trim();
+
+      if (!name || !message) return;
+
+      const tributes = getTributes();
+      const newTribute = {
+        name: name,
+        relation: relation,
+        message: message,
+        date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+      };
+
+      tributes.unshift(newTribute);
+      localStorage.setItem('memorial_tributes_list', JSON.stringify(tributes));
+
+      renderTributes();
+      document.getElementById('tribute-form').reset();
+      showToast("Thank you for sharing your memory.");
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' })[m]);
+    }
+
+    // --- SOOTHING AUDIO SYNTHESIZER ---
+    function toggleAudio() {
+      if (isAudioPlaying) {
+        stopAmbientAudio();
+      } else {
+        startAmbientAudio();
+      }
+    }
+
+    function startAmbientAudio() {
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        audioContext = new AudioCtx();
+        
+        // Gentle pentatonic ambient scale
+        const notes = [261.63, 293.66, 329.63, 392.00, 440.00]; // C4, D4, E4, G4, A4
+        let noteIdx = 0;
+
+        function playSoftChime() {
+          if (!isAudioPlaying) return;
+          
+          const osc = audioContext.createOscillator();
+          const gain = audioContext.createGain();
+
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(notes[noteIdx % notes.length], audioContext.currentTime);
+          
+          gain.gain.setValueAtTime(0.001, audioContext.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.1, audioContext.currentTime + 0.5);
+          gain.gain.exponentialRampToValueAtTime(0.0001, audioContext.currentTime + 3.5);
+
+          osc.connect(gain);
+          gain.connect(audioContext.destination);
+
+          osc.start();
+          osc.stop(audioContext.currentTime + 3.6);
+
+          noteIdx = (noteIdx + 1) % notes.length;
+          setTimeout(playSoftChime, 2500);
+        }
+
+        isAudioPlaying = true;
+        playSoftChime();
+
+        document.getElementById('audio-btn-icon').className = "fa-solid fa-pause";
+        document.getElementById('audio-btn-label').innerText = "Pause Ambient Music";
+        showToast("Playing peaceful ambient chimes.");
+      } catch (err) {
+        showToast("Audio unavailable on this browser.");
+      }
+    }
+
+    function stopAmbientAudio() {
+      isAudioPlaying = false;
+      if (audioContext) {
+        audioContext.close();
+      }
+      document.getElementById('audio-btn-icon').className = "fa-solid fa-play";
+      document.getElementById('audio-btn-label').innerText = "Play Ambient Music";
+    }
+
+    // --- TOAST HELPER ---
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-msg').innerText = msg;
+      toast.classList.remove('opacity-0', 'pointer-events-none');
+      toast.classList.add('opacity-100');
+
+      setTimeout(() => {
+        toast.classList.remove('opacity-100');
+        toast.classList.add('opacity-0', 'pointer-events-none');
+      }, 3000);
+    }
+  </script>
+
+</body>
+</html>
